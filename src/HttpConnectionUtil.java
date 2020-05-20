@@ -92,6 +92,7 @@ public class HttpConnectionUtil {
                 builder.append(str + "\n");
             }
             myResult = builder.toString();
+            System.out.println(message);
             return myResult;
 
         } catch (MalformedURLException e) {

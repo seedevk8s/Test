@@ -9,8 +9,8 @@ public class Test {
         String encType = "EUC-KR";
         String message = "040010020200519142141FICWON000L05000001LP000000000000000001001AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEFFFFFFFFFFGGGG 000";
 
-        String resp = HttpConnectionUtil.sendMessage(url, param, message, encType);
+        HttpConnectionUtil.sendMessage(url, param, message, encType);
 
-        System.out.println(resp);
+
     }
 }
