@@ -1,8 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -49,9 +45,9 @@ public class HttpConnectionUtil {
 
 
             //--------------------------
-            //   서버로 값 전송
+            //  클라이언트가 서버로 값을 전송
             //--------------------------
-            StringBuffer buffer = new StringBuffer();
+/*            StringBuffer buffer = new StringBuffer();
 
             //HashMap으로 전달받은 파라미터가 null이 아닌경우 버퍼에 넣어준다
             if (pList != null) {
@@ -63,12 +59,20 @@ public class HttpConnectionUtil {
                     String valueName = pList.get(keyName);
                     buffer.append(keyName).append("=").append(valueName);
                 }
-            }
+            }*/
 
-            OutputStreamWriter outStream = new OutputStreamWriter(mConn.getOutputStream(), "EUC-KR");
-            PrintWriter writer = new PrintWriter(outStream);
-            writer.write(buffer.toString());
-            writer.flush();
+
+
+            //OutputStreamWriter outStream = new OutputStreamWriter(mConn.getOutputStream(), "EUC-KR");
+            OutputStream out = mConn.getOutputStream();
+
+            //PrintWriter writer = new PrintWriter(outStream);
+            //writer.write(buffer.toString());
+            out.write(message.getBytes());
+            System.out.println(out);
+            //writer.flush();
+            out.flush();
+            out.close();
 
 
             //--------------------------
@@ -78,7 +82,7 @@ public class HttpConnectionUtil {
 
 
             //--------------------------
-            //   서버에서 전송받기
+            //   서버에서 클라이언트로 값을 전송받기
             //--------------------------
             InputStreamReader tmp = new InputStreamReader(mConn.getInputStream(), "UTF-8");
             BufferedReader reader = new BufferedReader(tmp);
